@@ -39,7 +39,9 @@ if(this.state.tool== Tools.Pencil){
   })
   
   }
- 
+ clearSketch=()=>{
+   this._sketch.clear();
+ }
   onAdd = (accepted /*, rejected*/, event) => {
     
    
@@ -78,7 +80,8 @@ if(this.state.tool== Tools.Pencil){
         </div>
 <br></br>
       <div className="container">
-          <button onClick={this.toolToggle}>Toggle Tool</button>
+          <Button onClick={this.toolToggle}>Toggle Tool</Button>
+          <Button onClick={this.clearSketch}>Clear</Button>
       <SketchField 
       width='1024px'
         height='768px'

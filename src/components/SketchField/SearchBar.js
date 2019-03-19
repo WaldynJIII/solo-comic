@@ -47,9 +47,9 @@ class SimplePopover extends React.Component {
                     variant="contained"
                     onClick={this.handleClick}
                 >
-                    Open Popover
+                    Search
         </Button>
-                <Popover
+                <Popover style={{width: '70%'}}
                     id="simple-popper"
                     open={open}
                     anchorEl={anchorEl}
@@ -64,9 +64,9 @@ class SimplePopover extends React.Component {
                     }}
                 >
                     <List >
-                        <ListItem style={{width: '20%'}}>
+                        <ListItem >
                         
-                            <Card style={{width: '20%'}} className="item-card">
+                            <Card style={{ width: '70%' }} className="item-card">
                                 <CardActionArea>
                                     <CardMedia
                                         key='https://static.giantbomb.com/uploads/original/10/101494/2165401-newgb2.jpg'
@@ -84,7 +84,7 @@ class SimplePopover extends React.Component {
                                     </Card>
                         </ListItem>
                         <ListItem>
-                            <Card style={{ width: '20%' }} className="item-card">
+                            <Card style={{ width: '70%' }} className="item-card">
                                 <CardActionArea>
                                     <CardMedia
                                         key='https://static.giantbomb.com/uploads/scale_medium/10/101494/2063627-bbbb.jpg'
@@ -95,6 +95,24 @@ class SimplePopover extends React.Component {
                                         image='https://static.giantbomb.com/uploads/scale_medium/10/101494/2063627-bbbb.jpg'
                                         title='batman'
                                         onDragStart={(event) => this.props.onDragStart(event, 'https://static.giantbomb.com/uploads/scale_medium/10/101494/2063627-bbbb.jpg')}
+                                        draggable
+                                        className="draggable"
+                                    />
+                                </CardActionArea>
+                            </Card>
+                        </ListItem>
+                        <ListItem>
+                            <Card style={{ width: '70%' }} className="item-card">
+                                <CardActionArea>
+                                    <CardMedia
+                                        key='https://static.giantbomb.com/uploads/scale_medium/10/101494/2005465-hhhh.jpg'
+                                        component="img"
+                                        alt='batman'
+                                        className="item-img"
+                                        height="240"
+                                        image='https://static.giantbomb.com/uploads/scale_medium/10/101494/2005465-hhhh.jpg'
+                                        title='batman'
+                                        onDragStart={(event) => this.props.onDragStart(event, 'https://static.giantbomb.com/uploads/scale_medium/10/101494/2005465-hhhh.jpg')}
                                         draggable
                                         className="draggable"
                                     />
