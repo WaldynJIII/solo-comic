@@ -10,7 +10,9 @@ import Button from '@material-ui/core/Button'
 class SketchFieldArea extends Component {
   state = {
     tool: Tools.Pencil,
-    picture: ''
+    color: 'black',
+    picture: '',
+
   }
   onDragOver = (event) => {
     event.preventDefault()
@@ -29,7 +31,21 @@ if(this.state.tool== Tools.Pencil){
    })
  }
   }
-  
+
+  setRed = () => {
+    if (this.state.color == 'black') {
+      this.setState({
+        ...this.state,
+        color: 'red'
+      })
+    }
+    else if (this.state.color == 'red') {
+      this.setState({
+        ...this.state,
+        color: 'black'
+      })
+    }
+  }
 
   onDragStart = (event, id) => {
     this.setState({
@@ -82,13 +98,14 @@ if(this.state.tool== Tools.Pencil){
       <div className="container">
           <Button onClick={this.toolToggle}>Toggle Tool</Button>
           <Button onClick={this.clearSketch}>Clear</Button>
+          <Button onClick={this.setRed}>Red</Button>
       <SketchField 
       width='1024px'
         height='768px'
         tool={this.state.tool} //Put in sketch tools here
         // tool={Tools.Select}
             ref={c => (this._sketch = c)}
-        lineColor='black'
+        lineColor={this.state.color}
         lineWidth={3}
             imageFormat='jpeg' />
         
