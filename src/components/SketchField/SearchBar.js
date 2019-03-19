@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -129,5 +130,7 @@ class SimplePopover extends React.Component {
 SimplePopover.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-
-export default withStyles(styles)(SimplePopover);
+const mapReduxStoreToProps = (reduxStore) => ({
+    reduxStore: reduxStore
+})
+export default withStyles(styles)(connect(mapReduxStoreToProps)(SimplePopover));
