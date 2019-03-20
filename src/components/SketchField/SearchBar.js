@@ -20,36 +20,74 @@ const styles = theme => ({
 
 class SimplePopover extends React.Component {
     state = {
+        search: {
+          title: '',
+          part: '',  
+        },
         anchorEl: null,
     };
 
     handleClick = event => {
+        event.preventDefault()
         this.setState({
+            ...this.state,
             anchorEl: event.currentTarget,
         });
+        this.props.dispatch({type:'SEND_SEARCH', payload: this.state.search})
     };
 
     handleClose = () => {
         this.setState({
+            ...this.state,
             anchorEl: null,
         });
     };
+handleChangeFor=(key)=>(event)=>{
 
+    this.setState({
+        ...this.state,
+        search:{
+            ...this.state.search,
+            [key]: event.target.value
+        }
+    })
+}
     render() {
-       
+       console.log(this.state.search)
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
         return (
             <div className='search'>
+                <form onSubmit={this.handleClick}>
+            <input onChange={this.handleChangeFor('title')}></input>
+                    
+                    <div onChange={this.handleChangeFor('part')}>
+                        <div>
+                            <label>
+                                <input
+                                    type="radio"
+                                    value='costume'
+                                    name="costume"
+                                />
+                               costume
+                </label>
+                        </div>
+                        
+                    </div>
+                   
+                
                 <Button
+                type='submit'
+                value='submit'
                     aria-owns={open ? 'simple-popper' : undefined}
                     aria-haspopup="true"
                     variant="contained"
-                    onClick={this.handleClick}
+                    // onClick={this.handleClick}
                 >
                     Search
         </Button>
+                </form>
                 <Popover style={{width: '70%'}}
                     id="simple-popper"
                     open={open}
