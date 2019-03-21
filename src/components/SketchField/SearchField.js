@@ -18,7 +18,7 @@ const styles = {
     checked: {},
 };
 
-class RadioButtons extends React.Component {
+class SearchField extends React.Component {
     state = {
         selectedValue: 'a',
     };
@@ -114,10 +114,10 @@ class RadioButtons extends React.Component {
     }
 }
 
-RadioButtons.propTypes = {
+SearchField.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })
-export default withStyles(styles)(connect(mapReduxStoreToProps)(RadioButtons));
+export default withStyles(styles)(connect(mapReduxStoreToProps)(SearchField));
