@@ -135,8 +135,22 @@ router.get('/r-leg', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/pit', (req, res) => {
 
+    console.log(req.body)
+    let proj = req.body
+    const queryText = `INSERT INTO "body_pit" ( "image", "hero_id", "user_id")
+                       VALUES ($1, $2, $3)`
+    pool.query(queryText, [proj.image, proj.hero, proj.user])
+        .then((result) => {
+
+            res.sendStatus(201)
+
+        })
+        .catch((error) => {
+            console.log(`Error on query ${error}`);
+            res.sendStatus(500);
+        });
 });
 
 module.exports = router;

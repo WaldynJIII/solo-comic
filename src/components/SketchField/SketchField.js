@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { SketchField, Tools } from 'react-sketch';
 import './SketchField.css'
-
+import { connect } from 'react-redux';
 import SearchBar from './SearchBar'
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,12 +14,18 @@ class SketchFieldArea extends Component {
     tool: Tools.Pencil,
     color: 'black',
     picture: '',
+    hero: '',
 
   }
   onDragOver = (event) => {
     event.preventDefault()
   }
- 
+ onSave=()=>{
+   this.props.dispatch({type: "TO_THE_PIT", payload: {
+     image: this.state.picture,
+    hero: this.state.hero,
+     user: this.props.reduxStore.user.id}})
+ }
 
   setColor = (color) => {
     console.log(color)
@@ -38,11 +44,11 @@ class SketchFieldArea extends Component {
 
   }
 
-  onDragStart = (event, id) => {
+  onDragStart = (event, id, image) => {
     this.setState({
       ...this.state,
-      picture:
-        id,
+      picture: image,
+        hero: id,
     })
 
   }
@@ -54,7 +60,7 @@ class SketchFieldArea extends Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state, this.props.reduxStore.user.id)
 
 
 
@@ -80,6 +86,7 @@ class SketchFieldArea extends Component {
             </CardActionArea>
 
             <Button onClick={this.onAdd}>Add Picture?</Button>
+            <Button onClick={this.onSave}>Save Picture?</Button>
           </Card>
         </div>
         <br></br>
@@ -105,4 +112,7 @@ class SketchFieldArea extends Component {
     )
   }
 }
-export default SketchFieldArea
+const mapReduxStoreToProps = (reduxStore) => ({
+  reduxStore: reduxStore
+})
+export default connect(mapReduxStoreToProps)(SketchFieldArea)

@@ -128,14 +128,14 @@ class SimplePopover extends React.Component {
                                     <Card style={{ width: '70%' }} className="item-card">
                                         <CardActionArea>
                                             <CardMedia
-                                                key='1'
+                                                key={heroImage.hero_id}
                                                 component="img"
                                                 alt='batman'
                                                 className="item-img"
                                                 height="240"
                                                 image={heroImage.image}
                                                 title='batman'
-                                                onDragStart={(event) => this.props.onDragStart(event, heroImage.image)}
+                                                    onDragStart={(event) => this.props.onDragStart(event, heroImage.hero_id, heroImage.image)}
                                                 draggable
                                                 className="draggable"
                                             />
