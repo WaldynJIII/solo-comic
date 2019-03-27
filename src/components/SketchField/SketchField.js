@@ -9,6 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button'
 import SelectColor from './SelectColor'
 import SelectTool from './SelectDrawTool'
+import Favorites from './Favorites'
 class SketchFieldArea extends Component {
   state = {
     tool: Tools.Pencil,
@@ -69,7 +70,9 @@ class SketchFieldArea extends Component {
       <div className="container-drag">
         <SearchBar onDragStart={this.onDragStart} onAdd={this.onAdd} />
         <br></br>
+        
         <div>
+          <Favorites onDragStart={this.onDragStart} onAdd={this.onAdd} />
           <Card style={{ width: '20%' }} className="item-card">
             <CardActionArea>
               <CardMedia
@@ -88,7 +91,9 @@ class SketchFieldArea extends Component {
             <Button onClick={this.onAdd}>Add Picture?</Button>
             <Button onClick={this.onSave}>Save Picture?</Button>
           </Card>
+          
         </div>
+        
         <br></br>
         <div className="container">
           <SelectTool setTool={this.setTool} />

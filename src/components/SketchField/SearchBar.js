@@ -93,9 +93,8 @@ class SimplePopover extends React.Component {
 
                     <Button
                         onClick={this.handleClick}
-                        type='submit'
-                        value='submit'
-                        ref='buttonElement'
+                     
+                        
 
                         aria-owns={open ? this.state.shut : undefined}
                         aria-haspopup="true"

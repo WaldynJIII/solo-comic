@@ -131,7 +131,26 @@ router.get('/r-leg', (req, res) => {
             res.sendStatus(500);
         });
 });
+router.get('/pit', (req, res) => {
+console.log(req.query)
 
+    const queryText = `SELECT DISTINCT "body_pit"."image" FROM "body_pit"
+    JOIN "hero" ON "hero"."id" = "hero_id"
+    JOIN "user" ON "user"."id" = "user"."id"
+    WHERE "hero"."name" = $1 AND "user_id" = $2;`
+
+
+    pool.query(queryText, [req.query.title, req.query.id])
+        .then((result) => {
+            res.send(result.rows);
+            console.log(result.rows)
+
+        })
+        .catch((error) => {
+            console.log(`Error on query ${error}`);
+            res.sendStatus(500);
+        });
+});
 /**
  * POST route template
  */
