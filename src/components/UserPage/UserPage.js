@@ -11,21 +11,33 @@ import ListItem from '@material-ui/core/ListItem';
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
 class UserPage extends Component {
+  state={
+    input: '',
+  }
 componentDidMount=()=>{
   this.props.dispatch({type: 'RESET'})
 }
   handleChange = (event) => {
+    this.setState({
+...this.state,
+input: event.target.value
+    })
     this.props.dispatch({ type: 'IGOR', payload: { title: event.target.value, id: this.props.reduxStore.user.id } })
   }
+  // removeImage=(event)=>{
+ 
+  //     return this.props.disptch({type: 'REMOVE', payload: heroImage.id})
+    
+  // }
   render() {
-
+let answer =''
     return (
       <div>
         <h1 id="welcome">
           Welcome, Doctor {this.props.reduxStore.user.username}!
     </h1>
         <p>Your ID is: {this.props.reduxStore.user.id}</p>
-        Search The  Body Pit by Hero
+        Search by Hero and Remove images by clicking on them.
         <input onChange={this.handleChange} />
         <div>
         <List>
@@ -42,9 +54,9 @@ componentDidMount=()=>{
               height="240"
               image={heroImage.image}
               title='batman'
+              onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.props.dispatch({type: 'REMOVE', payload: {imageId: heroImage.id, id: this.props.reduxStore.user.id, title: this.state.input}}) } } />
+
               
-              draggable
-              className="draggable"
             />
               </CardActionArea>
             </Card>

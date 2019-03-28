@@ -134,7 +134,7 @@ router.get('/r-leg', (req, res) => {
 router.get('/pit', (req, res) => {
 console.log(req.query)
 
-    const queryText = `SELECT DISTINCT "body_pit"."image" FROM "body_pit"
+    const queryText = `SELECT DISTINCT "body_pit"."image", "body_pit"."id" FROM "body_pit"
     JOIN "hero" ON "hero"."id" = "hero_id"
     JOIN "user" ON "user"."id" = "user"."id"
     WHERE "hero"."name" = $1 AND "user_id" = $2;`
@@ -171,5 +171,15 @@ router.post('/pit', (req, res) => {
             res.sendStatus(500);
         });
 });
+router.delete('/pit/:id', (req, res) => {
 
+   
+    const queryText = `DELETE FROM "body_pit" WHERE "id" = $1`
+    pool.query(queryText, [Number(req.params.id)]).then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('Error in DELETE', error);
+        res.sendStatus(500);
+    })
+});
 module.exports = router;
