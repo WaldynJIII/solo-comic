@@ -1,22 +1,108 @@
-.container {
-  grid-template-columns: 40px 50px auto 50px 40px;
-  grid-template-rows: 25% 100px auto;
+.container-drag {
+  /* grid-template-columns: 40px 50px auto 50px 40px;
+  grid-template-rows: 25% 100px auto; */
+  color: yellow;
+  text-shadow: 2px 2px red;
+  background-color: blue;
+  height: 400px;
 }
-.item-a {
-  grid-column-start: 2;
-  grid-column-end: five;
-  grid-row-start: row1-start;
-  grid-row-end: 3;
+.popover{
+  float: center;
 }
-.item-b {
-  grid-column-start: 1;
-  grid-column-end: span col4-start;
-  grid-row-start: 2;
-  grid-row-end: span 2;
+.sketch{
+  margin-top: 325px;
+  background-color: white;
+  float: bottom;
 }
 .search{
   float: right;
+  display: flex;
+  flex-direction: column;
+  margin-right: 125px;
 }
 .favorite{
-  float: right;
+text-align: center;
+position: center;
+float: top;
+
+
 }
+.f-list{
+  float: top;
+  position: center;
+  text-align: center;
+  margin-left: 250px;
+margin-right: 300px
+}
+.category-button {
+  background-color: black;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+ }
+ .colorbtn{
+  
+  color: yellow;
+  text-shadow: 2px 2px red;
+ }
+ /* The container <div> - needed to position the dropdown content */
+ .dropdown {
+   background-color: whitesmoke;
+  display: block;
+  margin: 15px 2px;
+  float: right;
+  float: bottom;
+  position: right;
+  border-radius: 4px;
+  text-align: center;
+ }
+ 
+ /* Dropdown Content (Hidden by Default) */
+ .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+ }
+ 
+ /* Links inside the dropdown */
+ .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  
+
+ }
+ .item-card{
+   float: left;
+  display: flex;
+  flex-direction: column;
+
+ }
+ .sketch-ops{
+   display: flex;
+   flex-direction: column;
+float: bottom;
+float: left;
+background-color: blue;
+color: yellow;
+text-shadow: 2px 2px red;
+ }
+ /* Change color of dropdown links on hover */
+ .dropdown-content a:hover {background-color: #ddd;}
+ 
+ /* Show the dropdown menu on hover */
+ .dropdown:hover .dropdown-content {display: block;}
+ 
+ /* Change the background color of the dropdown button when the dropdown content is shown */
+ .dropdown:hover .dropbtn {background-color: #87a554;}
+
+ .searchTitle{
+  height: 25px;
+  width: 160px;
+  border-radius: 4px;
+ }

@@ -16,6 +16,7 @@ class SketchFieldArea extends Component {
     color: 'black',
     picture: '',
     hero: '',
+    bgColor: 'white',
 
   }
   onDragOver = (event) => {
@@ -55,6 +56,7 @@ class SketchFieldArea extends Component {
   }
   clearSketch = () => {
     this._sketch.clear();
+   
   }
   onAdd = (accepted /*, rejected*/, event) => {
     this._sketch.addImg(this.state.picture)
@@ -68,12 +70,14 @@ class SketchFieldArea extends Component {
     return (
 
       <div className="container-drag">
+      <div>
         <SearchBar onDragStart={this.onDragStart} onAdd={this.onAdd} />
+        </div>
         <br></br>
         
-        <div>
-          <Favorites onDragStart={this.onDragStart} onAdd={this.onAdd} />
-          <Card style={{ width: '20%' }} className="item-card">
+        <div className="item-card">
+        
+          <Card style={{ width: '250px' }} >
             <CardActionArea>
               <CardMedia
                 key={this.state.picture}
@@ -87,25 +91,34 @@ class SketchFieldArea extends Component {
 
               />
             </CardActionArea>
-
+            
             <Button onClick={this.onAdd}>Add Picture?</Button>
             <Button onClick={this.onSave}>Save Picture?</Button>
           </Card>
-          
-        </div>
-        
-        <br></br>
-        <div className="container">
+          <div > 
+            {/* //className='sketch-ops' */}
           <SelectTool setTool={this.setTool} />
           <Button onClick={this.clearSketch}>Clear</Button>
           <SelectColor setColor={this.setColor} />
+          </div>
+        </div>
+        <Favorites onDragStart={this.onDragStart} onAdd={this.onAdd} />
+        <div >
+         
+         
+        
+       
+         
           <SketchField
-            width='1024px'
-            height='768px'
+        
+        className="sketch"
+            width='vw'
+            height='1000px'
             tool={this.state.tool} //Put in sketch tools here
             // tool={Tools.Select}
             ref={c => (this._sketch = c)}
             lineColor={this.state.color}
+            backgroundColor={this.state.bgColor}
             lineWidth={3}
             imageFormat='jpeg' />
 

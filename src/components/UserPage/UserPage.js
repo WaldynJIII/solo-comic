@@ -6,10 +6,14 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import './UserPage.css'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
 // and then instead of `props.user.username` you could use `user.username`
+
+
+
 class UserPage extends Component {
   state={
     input: '',
@@ -30,13 +34,14 @@ input: event.target.value
     
   // }
   render() {
-let answer =''
     return (
-      <div>
+      <div className="container-office">
+      
         <h1 id="welcome">
           Welcome, Doctor {this.props.reduxStore.user.username}!
     </h1>
-        <p>Your ID is: {this.props.reduxStore.user.id}</p>
+        <p>Your Badge Number is: {this.props.reduxStore.user.id}</p>
+        <p>Are you ready to create?</p>
         Search by Hero and Remove images by clicking on them.
         <input onChange={this.handleChange} />
         <div>
@@ -57,7 +62,7 @@ let answer =''
               onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) this.props.dispatch({type: 'REMOVE', payload: {imageId: heroImage.id, id: this.props.reduxStore.user.id, title: this.state.input}}) } } />
 
               
-            />
+           
               </CardActionArea>
             </Card>
            

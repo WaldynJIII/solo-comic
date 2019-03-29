@@ -2,6 +2,25 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+const theme = createMuiTheme({
+
+    overrides: {
+        // Name of the component ⚛️ / style sheet
+        MuiButton: {
+          // Name of the rule
+          text: {
+            // Some CSS
+       borderRadius: 3,
+            color: 'yellow',
+        border: 1,
+        borderColor: 'black',
+            
+          },
+        },
+      },
+    })
 
 class ColorSelect extends React.Component {
     state = {
@@ -24,13 +43,16 @@ class ColorSelect extends React.Component {
 
         return (
             <div>
-                <Button
+                <MuiThemeProvider theme={theme}>
+                <Button className='colorbtn'
+                
                     aria-owns={anchorEl ? 'simple-menu' : undefined}
                     aria-haspopup="true"
                     onClick={this.handleClick}
                 >
                     Select Color
         </Button>
+        </MuiThemeProvider>
                 <Menu
                     id="simple-menu"
                     anchorEl={anchorEl}

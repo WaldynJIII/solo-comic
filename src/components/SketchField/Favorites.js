@@ -16,14 +16,14 @@ class Favorites extends Component{
   render(){
     return(
       <div className='favorite'>
-Search The  Body Pit by Hero
-        <input onChange={this.handleChange} />
-        <div>
-        <List>
-            <ListItem style= {{ width: '50%' }}>
+Search from Favorites by Hero
+        <input onChange={this.handleChange} placeholder="Hero Name" />
+        <div className='f-list'>
+        <List >
+            <ListItem style= {{ width: '70%' }}>
           {this.props.reduxStore.favoritesReducer.map(heroImage => (
             
-            <Card style= {{ width: '70%' }}>
+            <Card style= {{ width: '100%' }}>
               <CardActionArea>
             <CardMedia
               key={heroImage.hero_id}

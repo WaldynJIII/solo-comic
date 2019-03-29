@@ -17,13 +17,20 @@ const styles = theme => ({
     typography: {
         margin: theme.spacing.unit * 2,
     },
+    card: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 140,
+    },
+
 });
 
 class SimplePopover extends React.Component {
     state = {
         search: {
             title: '',
-            part: '',
+            part: 'Choose Part',
         },
         anchorEl: null,
 
@@ -34,7 +41,7 @@ class SimplePopover extends React.Component {
     componentDidMount() {
 
 
-        this.props.dispatch({ type: 'SEND_SEARCH', payload: { title: this.state.search.title, part: 'costume' } })
+
     }
     handleClick = (event) => {
 
@@ -47,14 +54,14 @@ class SimplePopover extends React.Component {
 
     }
 
-    setType = (event) => {
+    setType = (key)=>(event) => {
         this.setState({
             ...this.state,
             search: {
                 ...this.state.search,
-                part: event.target.value
-            },
-            query: true,
+                part: key,
+            }
+            
         })
     }
 
@@ -69,7 +76,7 @@ class SimplePopover extends React.Component {
         });
     };
     handleChangeFor = (key) => (event) => {
-
+console.log(event.target.value)
         this.setState({
             ...this.state,
             search: {
@@ -84,86 +91,85 @@ class SimplePopover extends React.Component {
         const { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
-        if (this.state.query) {
-            return (
-                <div className='search'>
+
+        return (
+            <div className='search'>
+            <input className="searchTitle" placeholder="Hero" onChange={this.handleChangeFor('title')} />
 
 
-                    <input onChange={this.handleChangeFor('title')} />
+                
+                <Button
+                    onClick={this.handleClick}
+                    className="searchButton"
+                    aria-owns={open ? this.state.shut : undefined}
+                    aria-haspopup="true"
+                    variant="contained"
 
-                    <Button
-                        onClick={this.handleClick}
-                     
-                        
-
-                        aria-owns={open ? this.state.shut : undefined}
-                        aria-haspopup="true"
-                        variant="contained"
-
-                    >
-                        Search
+                >
+                    Search
                     </Button>
+                    
 
 
-                    <Popover style={{ width: '70%' }}
-                        id="simple-popper"
+                <Popover style={{ width: '200%' }}
+                    style={{ flex: 1 }}
+                    id="simple-popper"
+                    className='popover'
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={this.handleClose}
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                >
+                    <List style={{ width: '130%' }}>
 
-                        open={open}
-                        anchorEl={anchorEl}
-                        onClose={this.handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                        }}
-                        transformOrigin={{
-                            vertical: 'top',
-                            horizontal: 'center',
-                        }}
-                    >
-                        <List >
-                            
-                                {this.props.reduxStore.searchReducer.map(heroImage => (
-                                    <ListItem>
-                                    <Card style={{ width: '70%' }} className="item-card">
-                                        <CardActionArea>
-                                            <CardMedia
-                                                key={heroImage.hero_id}
-                                                component="img"
-                                                alt='batman'
-                                                className="item-img"
-                                                height="240"
-                                                image={heroImage.image}
-                                                title='batman'
-                                                    onDragStart={(event) => this.props.onDragStart(event, heroImage.hero_id, heroImage.image)}
-                                                draggable
-                                                className="draggable"
-                                            />
-                                        </CardActionArea>
-                                    </Card>
-                                    </ListItem>
-                                ))}
-                            
-                        </List>
-                    </Popover>
+                        {this.props.reduxStore.searchReducer.map(heroImage => (
+                            <ListItem //style={{width: '90%'}}
+                            >
+                                <Card //style={{ width: '90%' }} 
+                                    className="item-card">
+                                    <CardActionArea>
+                                        <CardMedia
+                                            key={heroImage.id}
+                                            component="img"
+                                            alt={heroImage.image}
+                                            className="item-img"
+                                            height="240"
+                                            className={SimplePopover.media}
+                                            src={heroImage.image}
+                                            title='batman'
+                                            onDragStart={(event) => this.props.onDragStart(event, heroImage.hero_id, heroImage.image)}
+                                            draggable
+                                            className="draggable"
+                                        />
+                                    </CardActionArea>
+                                </Card>
+                            </ListItem>
+                        ))}
 
-                </div>
-            );
-        }
-        else {
-            return (
-                <div className='search'>
-                    <SearchField setType={this.setType} />
-                </div>
-            )
-
-        }
+                    </List>
+                </Popover>
+                <SearchField part={this.state.search.part} setType={this.setType}/>
+            </div>
+        );
     }
 
+
 }
+
+
+
 
 SimplePopover.propTypes = {
     classes: PropTypes.object.isRequired,
 };
+
 const mapReduxStoreToProps = (reduxStore) => ({
     reduxStore: reduxStore
 })
