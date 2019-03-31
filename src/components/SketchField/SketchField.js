@@ -10,6 +10,24 @@ import Button from '@material-ui/core/Button'
 import SelectColor from './SelectColor'
 import SelectTool from './SelectDrawTool'
 import Favorites from './Favorites'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+const theme = createMuiTheme({
+
+    overrides: {
+        // Name of the component ⚛️ / style sheet
+        MuiButton: {
+          // Name of the rule
+          text: {
+            // Some CSS
+       
+            color: 'yellow',
+       
+            
+          },
+        },
+      },
+    })
 class SketchFieldArea extends Component {
   state = {
     tool: Tools.Pencil,
@@ -98,7 +116,10 @@ class SketchFieldArea extends Component {
           <div > 
             {/* //className='sketch-ops' */}
           <SelectTool setTool={this.setTool} />
-          <Button onClick={this.clearSketch}>Clear</Button>
+          <MuiThemeProvider theme={theme}>
+        
+          <Button className='clrbtn' onClick={this.clearSketch}>Clear</Button>
+          </MuiThemeProvider>
           <SelectColor setColor={this.setColor} />
           </div>
         </div>

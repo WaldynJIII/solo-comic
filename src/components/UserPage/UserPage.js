@@ -7,6 +7,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import './UserPage.css'
+import HorizontalScroll from 'react-scroll-horizontal'
 
 // this could also be written with destructuring parameters as:
 // const UserPage = ({ user }) => (
@@ -34,6 +35,7 @@ input: event.target.value
     
   // }
   render() {
+    const child = { width: `300em`, height: `100%`}
     return (
       <div className="container-office">
       
@@ -44,13 +46,17 @@ input: event.target.value
         <p>Are you ready to create?</p>
         Search by Hero and Remove images by clicking on them.
         <input onChange={this.handleChange} />
+        
+       
         <div>
-        <List>
-            <ListItem style= {{ width: '50%' }}>
+        <List >
+        
+            <ListItem className="scroll-f">
+            
           {this.props.reduxStore.favoritesReducer.map(heroImage => (
             
-            <Card style= {{ width: '70%' }}>
-              <CardActionArea>
+            <Card className="fav-card" style= {{ width: '300px' }}>
+            <CardActionArea>
             <CardMedia
               key={heroImage.hero_id}
               component="img"
@@ -67,9 +73,13 @@ input: event.target.value
             </Card>
            
             ))}
+           
             </ListItem>
+            
         </List>
         </div>
+        
+       
         <LogOutButton className="log-in" />
       </div>
     );

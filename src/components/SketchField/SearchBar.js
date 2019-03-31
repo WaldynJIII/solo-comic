@@ -94,6 +94,7 @@ console.log(event.target.value)
 
         return (
             <div className='search'>
+            <SearchField part={this.state.search.part} setType={this.setType}/>
             <input className="searchTitle" placeholder="Hero" onChange={this.handleChangeFor('title')} />
 
 
@@ -155,7 +156,7 @@ console.log(event.target.value)
 
                     </List>
                 </Popover>
-                <SearchField part={this.state.search.part} setType={this.setType}/>
+                
             </div>
         );
     }

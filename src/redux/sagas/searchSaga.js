@@ -15,8 +15,7 @@ function* sendSearch(action){
      yield put({type: "SET_IMAGES", payload: response.data })
     }
     catch (err) {
-        console.log('in plantplant (get)', err)
-        alert("It did not")
+       
     }
 }
     if (action.payload.part == 'head') {
@@ -33,7 +32,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+           
         }
     }
     if (action.payload.part == 'l-arm') {
@@ -50,7 +49,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+           
         }
     }
     if (action.payload.part == 'r-arm') {
@@ -67,7 +66,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+           
         }
     }
     if (action.payload.part == 'chest') {
@@ -84,7 +83,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+           
         }
     }
     if (action.payload.part == 'l-leg') {
@@ -101,7 +100,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+            
         }
     }
     if (action.payload.part == 'r-leg') {
@@ -118,7 +117,7 @@ function* sendSearch(action){
         }
         catch (err) {
             console.log('in plantplant (get)', err)
-            alert("It did not")
+            
         }
     }
 }

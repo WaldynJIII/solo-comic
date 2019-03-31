@@ -7,12 +7,13 @@ const router = express.Router();
  */
 router.get('/costume', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "costume"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [ req.query.title])
+    pool.query(queryText, [ hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -25,12 +26,13 @@ router.get('/costume', (req, res) => {
 });
 router.get('/r-arm', (req, res) => {
     
-
+let hero=req.query.title
+console.log(hero)
     const queryText = `SELECT * FROM "r-arm"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [ hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -43,12 +45,13 @@ router.get('/r-arm', (req, res) => {
 });
 router.get('/l-arm', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "l-arm"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -61,12 +64,13 @@ router.get('/l-arm', (req, res) => {
 });
 router.get('/head', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "head"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -79,12 +83,13 @@ router.get('/head', (req, res) => {
 });
 router.get('/chest', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "chest"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -97,12 +102,13 @@ router.get('/chest', (req, res) => {
 });
 router.get('/l-leg', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "l-leg"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -115,12 +121,13 @@ router.get('/l-leg', (req, res) => {
 });
 router.get('/r-leg', (req, res) => {
     
-
+    let hero=req.query.title
+    console.log(hero)
     const queryText = `SELECT * FROM "r-leg"
     JOIN "hero" ON "hero"."id" = "hero_id"
     WHERE "hero"."name" = $1;`
 
-    pool.query(queryText, [req.query.title])
+    pool.query(queryText, [hero.toLowerCase()])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
@@ -133,14 +140,15 @@ router.get('/r-leg', (req, res) => {
 });
 router.get('/pit', (req, res) => {
 console.log(req.query)
-
+let hero=req.query.title
+console.log(hero)
     const queryText = `SELECT DISTINCT "body_pit"."image", "body_pit"."id" FROM "body_pit"
     JOIN "hero" ON "hero"."id" = "hero_id"
     JOIN "user" ON "user"."id" = "user"."id"
     WHERE "hero"."name" = $1 AND "user_id" = $2;`
 
 
-    pool.query(queryText, [req.query.title, req.query.id])
+    pool.query(queryText, [hero.toLowerCase(), req.query.id])
         .then((result) => {
             res.send(result.rows);
             console.log(result.rows)
