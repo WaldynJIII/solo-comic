@@ -1,3 +1,6 @@
+
+
+Create a Database called "solo-comic"
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
@@ -42,3 +45,23 @@ CREATE TABLE "costume" (
 "image" VARCHAR,
 "hero_id" INT REFERENCES "hero"
 );
+
+ALTER TABLE "hero"
+RENAME COLUMN "username" TO "name";
+INSERT INTO "r-arm" ( "image", "hero_id")
+                       VALUES ('https://i.imgur.com/QTnXvpu.jpg', '1');
+INSERT INTO "hero"("name")
+VALUES('batman');
+
+CREATE TABLE "body_pit"(
+"id" SERIAL PRIMARY KEY,
+"image" VARCHAR,
+"hero_id" INT REFERENCES "hero",
+"user_id" INT REFERENCES "user"
+);
+INSERT INTO "hero"("name")
+VALUES('spiderman');
+INSERT INTO "l-arm" ( "image", "hero_id")
+VALUES ('https://static.giantbomb.com/uploads/square_medium/2/21654/962066-88952_hulk_400.jpg', '4');
+INSERT INTO "l-leg" ( "image", "hero_id")
+                       VALUES ('https://i.imgur.com/jDIh4HO.jpg', '7');
