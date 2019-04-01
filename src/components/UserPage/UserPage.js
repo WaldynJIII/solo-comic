@@ -55,7 +55,7 @@ input: event.target.value
             
           {this.props.reduxStore.favoritesReducer.map(heroImage => (
             
-            <Card className="fav-card" style= {{ width: '300px' }}>
+            <Card className="fav-card" style= {{ width: '250px' }}>
             <CardActionArea>
             <CardMedia
               key={heroImage.hero_id}

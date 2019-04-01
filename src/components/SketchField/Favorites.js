@@ -20,10 +20,10 @@ Search from Favorites by Hero
         <input onChange={this.handleChange} placeholder="Hero Name" />
         <div className='f-list'>
         <List >
-            <ListItem style= {{ width: '70%' }}>
+            <ListItem style= {{ width: '400px' }}>
           {this.props.reduxStore.favoritesReducer.map(heroImage => (
             
-            <Card style= {{ width: '100%' }}>
+            <Card style= {{ width: '200px' }}>
               <CardActionArea>
             <CardMedia
               key={heroImage.hero_id}
